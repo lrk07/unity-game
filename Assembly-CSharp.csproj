@@ -59,6 +59,9 @@
      <Compile Include="Assets\Script\Menu.cs" />
      <Compile Include="Assets\Script\Pingwin.cs" />
      <Compile Include="Assets\Script\Spikes.cs" />
+     <Compile Include="Assets\Script\StartMenu.cs" />
+     <Compile Include="Assets\Script\TimeMenu.cs" />
+     <Compile Include="Assets\Script\Timer.cs" />
      <Compile Include="Assets\Script\WaterChecker.cs" />
      <Compile Include="Assets\Script\Win.cs" />
  <Reference Include="UnityEngine.UI">
