@@ -13,11 +13,18 @@ public class Timer : MonoBehaviour {
 
 	private Pingwin pingwin;
 
-	// Use this for initialization
-	void Start () {
+    private bool changeSound;
+
+    //Sound
+    public AudioSource mainSound;
+    public AudioSource endSound;
+
+    // Use this for initialization
+    void Start () {
 		startTime = Time.time;
 		endTime = startTime + initTime;
 		isTimeOut = false;
+        changeSound = true;
 		pingwin = GameObject.FindGameObjectWithTag ("Player").GetComponent<Pingwin> ();
 		
 	}
@@ -26,10 +33,25 @@ public class Timer : MonoBehaviour {
 	void Update () {
 		float time = endTime - Time.time;
 		if (time <= 10) {
+
+            if (changeSound)
+            {
+                mainSound.Stop();
+                endSound.Play();
+                changeSound = false;
+            }
+
 			timerText.color = Color.red;
 		}
 		if (time <= 0) {
-			time = 0;
+
+            if (!changeSound)
+            {
+                endSound.Stop();
+                mainSound.Play();
+                changeSound = true;
+            }
+            time = 0;
 			isTimeOut = true;
 		}
 		timerText.text = "Time left: " + time.ToString("f0");

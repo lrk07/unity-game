@@ -23,6 +23,11 @@ public class Pingwin : MonoBehaviour
     // Referemce to gameController;
     public GameController controller;
 
+    // Sound
+    public AudioSource jumpSound;
+    public AudioSource damageSound;
+    public AudioSource plumSound;
+
     // Use this for initialization
     void Start()
     {
@@ -97,7 +102,8 @@ public class Pingwin : MonoBehaviour
     {
         if (Input.GetButton("Jump"))
         {
-            if(graunded)
+            jumpSound.Play();
+            if (graunded)
             {
                 pingwinBody2D.AddForce(Vector2.up * jumpPower);
                 canDoubleJump = true;
@@ -146,6 +152,7 @@ public class Pingwin : MonoBehaviour
     public IEnumerator Knockback(float knockDuration, float knockPower, Vector3 knockDirection)
     {
 
+        damageSound.Play();
         float timer = 0;
         while (knockDuration > timer)
         {
@@ -168,14 +175,14 @@ public class Pingwin : MonoBehaviour
     {
         if (collision.CompareTag("Coin"))
         {
-
+            plumSound.Play();
             Destroy(collision.gameObject);
             controller.coints += 1;
 
         }
         else if (collision.CompareTag("Heart"))
         {
-
+            plumSound.Play();
             Destroy(collision.gameObject);
             AddHeart();
         }
